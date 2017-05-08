@@ -11,11 +11,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = parec
 TEMPLATE = app vcapp
 
+win32{
 INCLUDEPATH += $$PWD/../include
 
-win32: LIBS += -L$$PWD/../lib/
+LIBS += -L$$PWD/../lib/
 
 LIBS += -lportaudio_x86 -llibsndfile-1
+} else {
+LIBS += -lportaudio -libsndfile
+}
 
 SOURCES += main.cpp\
 		LsMainWindow.cpp \
